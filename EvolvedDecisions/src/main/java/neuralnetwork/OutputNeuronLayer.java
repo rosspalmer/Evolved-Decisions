@@ -1,4 +1,4 @@
-package ross.palmer.interstellar.ai.neuralnetwork;
+package neuralnetwork;
 
 import java.util.HashMap;
 import java.util.Map;
