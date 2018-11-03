@@ -1,4 +1,4 @@
-package neuralnetwork;
+package models.neuralnetwork;
 
 public class NeuronGenerator {
 

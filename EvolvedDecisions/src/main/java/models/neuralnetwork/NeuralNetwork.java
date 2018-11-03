@@ -1,4 +1,4 @@
-package neuralnetwork;
+package models.neuralnetwork;
 
 import ross.palmer.interstellar.ai.decisions.DecisionModel;
 
