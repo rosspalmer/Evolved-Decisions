@@ -1,14 +1,12 @@
 package models.neuralnetwork;
 
-import ross.palmer.interstellar.ai.decisions.DecisionModel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class NeuralNetwork implements DecisionModel {
+public class NeuralNetwork {
 
     private final long networkId;
     private InputNeuronLayer inputLayer;
@@ -79,7 +77,6 @@ public class NeuralNetwork implements DecisionModel {
 
     }
 
-    @Override
     public Map<Long, Double> getOutputData(Map<Long, Double> inputValues) {
         getInputLayer().setInputValues(inputValues);
         feedForward();
