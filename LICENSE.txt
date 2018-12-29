@@ -1,0 +1,5 @@
+/* Copyright (C) Ross Palmer - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Ross Palmer <rossbpalmer@gmail.com>, December 29 2018
+ */
