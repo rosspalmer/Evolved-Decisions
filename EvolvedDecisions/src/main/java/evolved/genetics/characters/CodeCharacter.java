@@ -1,9 +1,6 @@
-package genetics.characters;
+package evolved.genetics.characters;
 
-import genetics.Gene;
-import genetics.GeneOption;
-
-import java.util.Set;
+import evolved.genetics.Gene;
 
 public abstract class CodeCharacter {
 

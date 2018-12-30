@@ -1,6 +1,6 @@
-package genetics.characters;
+package evolved.genetics.characters;
 
-import genetics.Gene;
+import evolved.genetics.Gene;
 
 public class DigitCharacter extends CodeCharacter {
 

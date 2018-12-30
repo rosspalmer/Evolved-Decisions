@@ -1,7 +1,7 @@
-package genetics.characters;
+package evolved.genetics.characters;
 
-import genetics.Gene;
-import genetics.GeneOption;
+import evolved.genetics.Gene;
+import evolved.genetics.GeneOption;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package genetics;
+package evolved.genetics;
 
 public enum GeneOption {
 
