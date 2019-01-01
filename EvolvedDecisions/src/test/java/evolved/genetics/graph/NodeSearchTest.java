@@ -13,12 +13,12 @@ public class NodeSearchTest {
     @Test
     public void getCharacterPath() {
 
-        Node node0 = new Node(0);
-        Node nodeA = new Node(1);
-        Node nodeB = new Node(2);
-        Node nodeC = new Node(3);
-        Node nodeD = new Node(4);
-        Node nodeE = new Node(5);
+        Node node0 = new Node(0, null);
+        Node nodeA = new Node(1, null);
+        Node nodeB = new Node(2, null);
+        Node nodeC = new Node(3, null);
+        Node nodeD = new Node(4, null);
+        Node nodeE = new Node(5, null);
 
         node0.addRelatedNodes(NodeRelationship.PATH_TO, nodeA);
         nodeA.addRelatedNodes(NodeRelationship.PATH_TO, nodeB);
@@ -46,6 +46,60 @@ public class NodeSearchTest {
         assertEquals(nodeA, resultsACPath.get(0));
         assertEquals(nodeC, resultsACPath.get(1));
 
+    }
+
+    @Test
+    public void getNodeBlocks() {
+
+        Node node0 = new Node(0, NodeType.CHARACTER);
+        Node nodeA = new Node(1, NodeType.PATH_START);
+        Node nodeB = new Node(2, NodeType.CHARACTER);
+        Node nodeC = new Node(3, NodeType.PATH_START);
+        Node nodeD = new Node(4, NodeType.PATH_END);
+        Node nodeE = new Node(5, NodeType.PATH_START);
+        Node nodeF = new Node(6, NodeType.CHARACTER);
+        Node nodeG = new Node(7, NodeType.PATH_END);
+
+        node0.addRelatedNodes(NodeRelationship.PATH_TO, nodeA);
+        nodeA.addRelatedNodes(NodeRelationship.PATH_TO, nodeB);
+        nodeB.addRelatedNodes(NodeRelationship.PATH_TO, nodeC);
+        nodeC.addRelatedNodes(NodeRelationship.PATH_TO, nodeD);
+        nodeD.addRelatedNodes(NodeRelationship.PATH_TO, nodeE);
+        nodeE.addRelatedNodes(NodeRelationship.PATH_TO, nodeF);
+        nodeF.addRelatedNodes(NodeRelationship.PATH_TO, nodeG);
+
+        Set<Node> fullPath = new HashSet<>();
+        fullPath.add(node0);
+        fullPath.add(nodeA);
+        fullPath.add(nodeB);
+        fullPath.add(nodeC);
+        fullPath.add(nodeD);
+        fullPath.add(nodeE);
+        fullPath.add(nodeF);
+        fullPath.add(nodeG);
+
+        List<Node> nodesOrdered = NodeSearch.getNodePath(node0, fullPath);
+        assertEquals(8, nodesOrdered.size());
+
+        Set<Set<Node>> nodeBlocks = NodeSearch.getNodeBlocks(nodesOrdered, NodeType.PATH_START, NodeType.PATH_END);
+
+        assertEquals(2, nodeBlocks.size());
+
+        for (Set<Node> block : nodeBlocks) {
+            if (block.size() == 4) {
+                assertTrue(block.contains(nodeA));
+                assertTrue(block.contains(nodeB));
+                assertTrue(block.contains(nodeC));
+                assertTrue(block.contains(nodeD));
+            } else if (block.size() == 3) {
+                assertTrue(block.contains(nodeE));
+                assertTrue(block.contains(nodeF));
+                assertTrue(block.contains(nodeG));
+            } else {
+                throw new RuntimeException("Incorrect size of returned block");
+            }
+        }
 
     }
+
 }

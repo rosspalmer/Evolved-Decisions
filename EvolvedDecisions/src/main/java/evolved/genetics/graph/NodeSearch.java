@@ -1,6 +1,7 @@
 package evolved.genetics.graph;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,5 +34,27 @@ public class NodeSearch {
             }
         }
         return nodePath;
+    }
+
+    public static Set<Set<Node>> getNodeBlocks(List<Node> orderedNodes, NodeType blockStartType, NodeType blockEndType) {
+
+        Set<Set<Node>> nodeBlocks = new HashSet<>();
+        boolean startFound = false;
+        int startIndex = 0;
+
+        for (int i=0; i < orderedNodes.size(); i++) {
+
+            Node node = orderedNodes.get(i);
+
+            if (!startFound && node.getNodeType().equals(blockStartType)) {
+                startIndex = i;
+                startFound = true;
+
+            } else if (startFound && node.getNodeType().equals(blockEndType)) {
+                nodeBlocks.add(new HashSet<>(orderedNodes.subList(startIndex, i + 1)));
+                startFound = false;
+            }
+        }
+        return nodeBlocks;
     }
 }

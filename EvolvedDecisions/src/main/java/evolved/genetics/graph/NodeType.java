@@ -1,5 +1,5 @@
 package evolved.genetics.graph;
 
 public enum NodeType {
-    MODEL_START, MODEL_END
+    CHARACTER, PATH_START, PATH_END
 }
