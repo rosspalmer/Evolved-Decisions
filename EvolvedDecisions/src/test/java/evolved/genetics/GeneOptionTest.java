@@ -12,8 +12,9 @@ public class GeneOptionTest {
         assertEquals("26F", testString);
     }
 
+    @Test
     public void test_getCount() {
-
+        assertEquals(16, GeneOption.getCount());
     }
 
 }

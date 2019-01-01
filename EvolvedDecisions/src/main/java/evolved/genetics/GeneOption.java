@@ -12,7 +12,7 @@ public enum GeneOption {
         return baseString.substring(4);
     }
 
-    public int getCount() {
+    public static int getCount() {
         return GeneOption.values().length;
     }
 
