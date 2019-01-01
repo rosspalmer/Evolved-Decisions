@@ -8,11 +8,13 @@ import java.util.Set;
 public class Node {
 
     private final int nodeId;
+    private final NodeType nodeType;
 
     private Map<NodeRelationship, Set<Node>> relatedNodesMap;
 
-    public Node(int nodeId) {
+    public Node(int nodeId, NodeType nodeType) {
         this.nodeId = nodeId;
+        this.nodeType = nodeType;
         relatedNodesMap = new HashMap<>();
     }
 
@@ -26,6 +28,10 @@ public class Node {
 
     public int getNodeId() {
         return nodeId;
+    }
+
+    public NodeType getNodeType() {
+        return nodeType;
     }
 
     public Set<Node> getRelatedNodes(NodeRelationship relationship) {
