@@ -1,5 +1,5 @@
 package evolved.genetics.graph;
 
-public enum NodeRelationshipType {
+public enum NodeRelationship {
     POSITION_TO
 }

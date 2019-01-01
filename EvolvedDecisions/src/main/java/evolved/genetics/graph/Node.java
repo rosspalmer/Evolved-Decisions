@@ -9,7 +9,7 @@ public class Node {
 
     private final int nodeId;
 
-    private Map<NodeRelationshipType, Set<Node>> nodeRelationships;
+    private Map<NodeRelationship, Set<Node>> nodeRelationships;
 
     public Node(int nodeId) {
         this.nodeId = nodeId;
@@ -20,7 +20,7 @@ public class Node {
         return nodeId;
     }
 
-    public Set<Node> getRelatedNodes(NodeRelationshipType relationshipType) {
+    public Set<Node> getRelatedNodes(NodeRelationship relationshipType) {
         if (nodeRelationships.containsKey(relationshipType)) {
             return nodeRelationships.get(relationshipType);
         } else {
@@ -28,7 +28,7 @@ public class Node {
         }
     }
 
-    public void setRelatedNodes(NodeRelationshipType relationshipType, Set<Node> relatedNodes) {
+    public void setRelatedNodes(NodeRelationship relationshipType, Set<Node> relatedNodes) {
         nodeRelationships.put(relationshipType, relatedNodes);
     }
 
