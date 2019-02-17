@@ -2,8 +2,8 @@ package evolved.model.operators;
 
 import evolved.data.DataValue;
 
-public interface SingleOperator {
+public interface SingleOperator extends Operator {
 
-    public DataValue transformDataValue(DataValue dataValue);
+    DataValue transformDataValue(DataValue dataValue);
 
 }

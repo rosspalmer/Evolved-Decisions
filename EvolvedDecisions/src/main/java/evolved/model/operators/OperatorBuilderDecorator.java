@@ -1,29 +1,27 @@
 package evolved.model.operators;
 
-import evolved.data.DataSet;
 import evolved.data.DataValue;
+import evolved.genetics.characters.OperatorType;
 import evolved.model.ModelBuilder;
+import evolved.model.ModelBuilderDecorator;
 import evolved.model.feed.DataValueFeed;
 import evolved.model.feed.ValueFeed;
 import evolved.model.feed.ValueSetFeed;
 
 import java.util.Set;
 
-public class OperatorModelBuilder implements ModelBuilder {
+public class OperatorBuilderDecorator extends ModelBuilderDecorator {
 
     private Operator operator;
 
-    public OperatorModelBuilder(Operator operator) {
+    public OperatorBuilderDecorator(ModelBuilder modelBuilder, OperatorType operatorType) {
+        super(modelBuilder);
+        this.operator = OperatorFactory.generate(operatorType);
+    }
+
+    public OperatorBuilderDecorator(ModelBuilder modelBuilder, Operator operator) {
+        super(modelBuilder);
         this.operator = operator;
-    }
-
-    public Operator getOperator() {
-        return operator;
-    }
-
-    @Override
-    public DataValueFeed generateInputFeed(DataSet dataSet) {
-        return null;
     }
 
     @Override
@@ -39,11 +37,6 @@ public class OperatorModelBuilder implements ModelBuilder {
             throw new RuntimeException("Unsupported Operator Type");
         }
         return new ValueFeed(outputDataValue);
-    }
-
-    @Override
-    public DataSet updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
-        return null;
     }
 
 }

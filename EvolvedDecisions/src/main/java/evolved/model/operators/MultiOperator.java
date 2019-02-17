@@ -4,8 +4,8 @@ import evolved.data.DataValue;
 
 import java.util.Set;
 
-public interface MultiOperator {
+public interface MultiOperator extends Operator {
 
-    public DataValue transform(Set<DataValue> dataValues);
+    DataValue transform(Set<DataValue> dataValues);
 
 }
