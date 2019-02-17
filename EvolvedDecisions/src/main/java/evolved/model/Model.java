@@ -7,10 +7,12 @@ public abstract class Model {
 
     private ModelEngine modelEngine;
     private Set<Parameter> parameters;
+    private ParameterTuner parameterTuner;
 
-    public Model(ModelEngine modelEngine) {
+    public Model(ModelEngine modelEngine, ParameterTuner parameterTuner) {
         this.modelEngine = modelEngine;
         parameters = new HashSet<>();
+        this.parameterTuner = parameterTuner;
     }
 
     public void addParameter(Parameter parameter) {
@@ -30,8 +32,16 @@ public abstract class Model {
         return parameters;
     }
 
+    public ParameterTuner getParameterTuner() {
+        return parameterTuner;
+    }
+
     public void setParameters(Set<Parameter> parameters) {
         this.parameters = parameters;
+    }
+
+    public void setParameterTuner(ParameterTuner parameterTuner) {
+        this.parameterTuner = parameterTuner;
     }
 
     public void setModelEngine(ModelEngine modelEngine) {
@@ -40,6 +50,7 @@ public abstract class Model {
 
     public DataSet transformDataSet(DataSet dataSet, ModelEngine modelEngine) {
         setModelEngine(modelEngine);
+        setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
         return transformDataSet(dataSet);
     }
 
