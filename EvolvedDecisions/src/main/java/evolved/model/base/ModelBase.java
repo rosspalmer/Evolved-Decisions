@@ -54,7 +54,8 @@ public abstract class ModelBase implements Model {
         this.modelEngine = modelEngine;
     }
 
-    public DataSet transformDataSet(DataSet dataSet, ModelEngine modelEngine) {
+    @Override
+    public DataSet transformDataSet(ModelEngine modelEngine, DataSet dataSet) {
 
         setModelEngine(modelEngine);
         setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
