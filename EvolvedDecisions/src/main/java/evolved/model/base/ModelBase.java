@@ -15,9 +15,6 @@ public abstract class ModelBase implements Model {
     private Set<Parameter> parameters;
     private ParameterTuner parameterTuner;
 
-    private DataValueFeed inputFeed;
-    private DataValueFeed outputFeed;
-
     public ModelBase(ModelEngine modelEngine, ParameterTuner parameterTuner) {
         this.modelEngine = modelEngine;
         parameters = new HashSet<>();
@@ -45,14 +42,6 @@ public abstract class ModelBase implements Model {
         return parameterTuner;
     }
 
-    public void setInputFeed(DataValueFeed inputFeed) {
-        this.inputFeed = inputFeed;
-    }
-
-    public void setOutputFeed(DataValueFeed outputFeed) {
-        this.outputFeed = outputFeed;
-    }
-
     public void setParameters(Set<Parameter> parameters) {
         this.parameters = parameters;
     }
@@ -68,17 +57,19 @@ public abstract class ModelBase implements Model {
     public DataSet transformDataSet(DataSet dataSet, ModelEngine modelEngine) {
 
         setModelEngine(modelEngine);
-        setInputFeed(updateInputFeed(dataSet));
-        setOutputFeed(updateOutputFeed(dataSet));
-
         setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
-        dataSet = transformDataSet(dataSet);
+
+        DataValueFeed inputFeed = generateInputFeed(dataSet);
+        DataValueFeed outputFeed = compute(inputFeed);
+        dataSet = updateDataSet(dataSet, outputFeed);
 
         return dataSet;
     }
 
-    public abstract DataValueFeed updateInputFeed(DataSet dataSet);
+    public abstract DataValueFeed generateInputFeed(DataSet dataSet);
 
-    public abstract DataValueFeed updateOutputFeed(DataSet dataSet);
+    public abstract DataValueFeed compute(DataValueFeed inputFeed);
+
+    public abstract DataSet updateDataSet(DataSet dataSet, DataValueFeed outputFeed);
 
 }
