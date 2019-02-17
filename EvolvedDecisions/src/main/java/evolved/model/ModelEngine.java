@@ -7,23 +7,23 @@ import java.util.List;
 
 public class ModelEngine {
 
-    private List<Model> modelSequence;
+    private List<ModelBase> modelBaseSequence;
 
     public ModelEngine() {
-        modelSequence = new ArrayList<>();
+        modelBaseSequence = new ArrayList<>();
     }
 
-    public void addToModelSequence(Model model) {
-        modelSequence.add(model);
+    public void addToModelSequence(ModelBase modelBase) {
+        modelBaseSequence.add(modelBase);
     }
 
-    public List<Model> getModelSequence() {
-        return modelSequence;
+    public List<ModelBase> getModelBaseSequence() {
+        return modelBaseSequence;
     }
 
     public DataSet transformDataSet(DataSet dataSet) {
-        for (Model model : modelSequence) {
-            dataSet = model.transformDataSet(dataSet, this);
+        for (ModelBase modelBase : modelBaseSequence) {
+            dataSet = modelBase.transformDataSet(dataSet, this);
         }
         return dataSet;
     }
