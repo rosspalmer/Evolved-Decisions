@@ -1,5 +1,7 @@
 package evolved.model;
 
+import evolved.data.DataSet;
+
 import java.util.Set;
 
 public interface ParameterTuner {

@@ -1,4 +1,4 @@
-package evolved.model;
+package evolved.data;
 
 public interface DataSet {
 }
