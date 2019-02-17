@@ -7,22 +7,22 @@ import java.util.List;
 
 public class ModelEngine {
 
-    private List<Model> modelBuildeSequence;
+    private List<Model> modelSequence;
 
     public ModelEngine() {
-        modelBuildeSequence = new ArrayList<>();
+        modelSequence = new ArrayList<>();
     }
 
     public void addToModelSequence(Model model) {
-        modelBuildeSequence.add(model);
+        modelSequence.add(model);
     }
 
-    public List<Model> getModelBuildeSequence() {
-        return modelBuildeSequence;
+    public List<Model> getModelSequence() {
+        return modelSequence;
     }
 
     public DataSet transformDataSet(DataSet dataSet) {
-        for (Model modelBuilde : modelBuildeSequence) {
+        for (Model modelBuilde : modelSequence) {
             dataSet = modelBuilde.transformDataSet(this, dataSet);
         }
         return dataSet;
