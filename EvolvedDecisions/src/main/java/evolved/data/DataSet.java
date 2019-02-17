@@ -1,9 +1,13 @@
 package evolved.data;
 
+import java.util.Set;
+
 public interface DataSet {
 
-    public DataValue getValue(String key);
+    DataValue getValue(String key);
 
-    public void setValue(String key, DataValue dataValue);
+    void setValue(String key, DataValue dataValue);
+
+    Set<DataValue> getValues(Set<String> inputKeys);
 
 }
