@@ -11,4 +11,9 @@ public class DataValueDecorator implements DataValue {
     public DataValue getDataValue() {
         return dataValue;
     }
+
+    @Override
+    public boolean getBooleanValue() {
+        return getDataValue().getBooleanValue();
+    }
 }
