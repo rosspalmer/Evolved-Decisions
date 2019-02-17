@@ -1,4 +1,4 @@
-package evolved.genetics.characters;
+package evolved.model.operators;
 
 public enum OperatorType {
     AND, OR, NOT,

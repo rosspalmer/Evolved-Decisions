@@ -1,7 +1,5 @@
 package evolved.model.operators;
 
-import evolved.genetics.characters.OperatorType;
-
 class OperatorFactory {
 
     static Operator generate(OperatorType operatorType) {

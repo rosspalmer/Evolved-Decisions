@@ -1,5 +1,7 @@
 package evolved.genetics.characters;
 
+import evolved.model.operators.OperatorType;
+
 public abstract class OperatorCharactor implements GeneCharacter {
 
     private final OperatorType operatorType;

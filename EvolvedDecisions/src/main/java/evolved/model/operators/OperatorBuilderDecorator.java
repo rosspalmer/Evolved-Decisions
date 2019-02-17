@@ -1,7 +1,6 @@
 package evolved.model.operators;
 
 import evolved.data.DataValue;
-import evolved.genetics.characters.OperatorType;
 import evolved.model.ModelBuilder;
 import evolved.model.ModelBuilderDecorator;
 import evolved.model.feed.DataValueFeed;
