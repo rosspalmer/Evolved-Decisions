@@ -1,7 +1,6 @@
 package evolved.model;
 
 import evolved.data.DataSet;
-import evolved.model.base.ModelBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class ModelEngine {
 
     public DataSet transformDataSet(DataSet dataSet) {
         for (ModelBase modelBase : modelBaseSequence) {
-            dataSet = modelBase.transformDataSet(dataSet, this);
+            dataSet = modelBase.transformDataSet(this, dataSet);
         }
         return dataSet;
     }

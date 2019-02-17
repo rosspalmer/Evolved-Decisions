@@ -1,4 +1,4 @@
-package evolved.model.base;
+package evolved.model.feed;
 
 public interface DataValueFeed {
 }

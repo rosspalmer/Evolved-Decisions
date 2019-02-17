@@ -1,10 +1,7 @@
-package evolved.model.base;
+package evolved.model;
 
 import evolved.data.DataSet;
-import evolved.model.Model;
-import evolved.model.ModelEngine;
-import evolved.model.Parameter;
-import evolved.model.ParameterTuner;
+import evolved.model.feed.DataValueFeed;
 
 import java.util.HashSet;
 import java.util.Set;
