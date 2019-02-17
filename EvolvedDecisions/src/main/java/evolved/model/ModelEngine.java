@@ -21,7 +21,7 @@ public class ModelEngine {
 
     public DataSet transformDataSet(DataSet dataSet) {
         for (Model model : modelSequence) {
-            dataSet = model.transformDataSet(this, dataSet);
+            dataSet = model.transformDataSet(dataSet, this);
         }
         return dataSet;
     }
