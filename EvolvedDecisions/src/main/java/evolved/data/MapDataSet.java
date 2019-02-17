@@ -2,6 +2,8 @@ package evolved.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MapDataSet implements DataSet {
 
@@ -19,5 +21,13 @@ public class MapDataSet implements DataSet {
     @Override
     public void setValue(String key, DataValue dataValue) {
         dataValueMap.put(key, dataValue);
+    }
+
+    @Override
+    public Set<DataValue> getValues(Set<String> inputKeys) {
+        return dataValueMap.entrySet().stream()
+                .filter(entry -> inputKeys.contains(entry.getKey()))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toSet());
     }
 }
