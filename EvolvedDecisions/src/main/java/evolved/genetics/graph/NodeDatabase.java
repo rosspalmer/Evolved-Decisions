@@ -23,8 +23,8 @@ public class NodeDatabase {
         return nodes;
     }
 
-    public Set<Node> getNodes(NodeType nodeType) {
-        return NodeSearch.getNodes(nodes, nodeType);
+    public Set<Node> getNodes(NodeTag nodeTag) {
+        return NodeSearch.getNodes(nodes, nodeTag);
     }
 
 }

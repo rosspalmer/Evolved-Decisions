@@ -11,51 +11,50 @@ import static org.junit.Assert.*;
 public class NodeSearchTest {
 
     @Test
-    public void getNodesOfType() {
+    public void getNodes_NodeType() {
 
-        Node nodeA = new Node(1, NodeType.CHARACTER);
-        Node nodeB = new Node(2, NodeType.PATH_START);
-        Node nodeC = new Node(3, NodeType.PATH_END);
-        Node nodeD = new Node(4, NodeType.CHARACTER);
+        Node nodeA = new Node(1);
+        nodeA.addNodeTag(NodeTag.CHARACTER);
+        Node nodeB = new Node(2);
+        nodeB.addNodeTag(NodeTag.PATH_START);
+        Node nodeC = new Node(3);
+        nodeC.addNodeTag(NodeTag.PATH_END);
+        nodeC.addNodeTag(NodeTag.CHARACTER);
 
         Set<Node> nodes = new HashSet<>();
         nodes.add(nodeA);
         nodes.add(nodeB);
         nodes.add(nodeC);
-        nodes.add(nodeD);
 
-        Set<Node> characterNodes = NodeSearch.getNodes(nodes, NodeType.CHARACTER);
+        Set<Node> characterNodes = NodeSearch.getNodes(nodes, NodeTag.CHARACTER);
         assertEquals(2, characterNodes.size());
         assertTrue(characterNodes.contains(nodeA));
         assertFalse(characterNodes.contains(nodeB));
-        assertFalse(characterNodes.contains(nodeC));
-        assertTrue(characterNodes.contains(nodeD));
+        assertTrue(characterNodes.contains(nodeC));
 
-        Set<Node> startNodes = NodeSearch.getNodes(nodes, NodeType.PATH_START);
+        Set<Node> startNodes = NodeSearch.getNodes(nodes, NodeTag.PATH_START);
         assertEquals(1, startNodes.size());
         assertFalse(startNodes.contains(nodeA));
         assertTrue(startNodes.contains(nodeB));
         assertFalse(startNodes.contains(nodeC));
-        assertFalse(startNodes.contains(nodeD));
 
-        Set<Node> endNodes = NodeSearch.getNodes(nodes, NodeType.PATH_END);
+        Set<Node> endNodes = NodeSearch.getNodes(nodes, NodeTag.PATH_END);
         assertEquals(1, endNodes.size());
         assertFalse(endNodes.contains(nodeA));
         assertFalse(endNodes.contains(nodeB));
         assertTrue(endNodes.contains(nodeC));
-        assertFalse(endNodes.contains(nodeD));
 
     }
 
     @Test
     public void getCharacterPath() {
 
-        Node node0 = new Node(0, null);
-        Node nodeA = new Node(1, null);
-        Node nodeB = new Node(2, null);
-        Node nodeC = new Node(3, null);
-        Node nodeD = new Node(4, null);
-        Node nodeE = new Node(5, null);
+        Node node0 = new Node(0);
+        Node nodeA = new Node(1);
+        Node nodeB = new Node(2);
+        Node nodeC = new Node(3);
+        Node nodeD = new Node(4);
+        Node nodeE = new Node(5);
 
         node0.addRelatedNodes(NodeRelationship.PATH_TO, nodeA);
         nodeA.addRelatedNodes(NodeRelationship.PATH_TO, nodeB);
@@ -88,14 +87,22 @@ public class NodeSearchTest {
     @Test
     public void getNodeBlocks() {
 
-        Node node0 = new Node(0, NodeType.CHARACTER);
-        Node nodeA = new Node(1, NodeType.PATH_START);
-        Node nodeB = new Node(2, NodeType.CHARACTER);
-        Node nodeC = new Node(3, NodeType.PATH_START);
-        Node nodeD = new Node(4, NodeType.PATH_END);
-        Node nodeE = new Node(5, NodeType.PATH_START);
-        Node nodeF = new Node(6, NodeType.CHARACTER);
-        Node nodeG = new Node(7, NodeType.PATH_END);
+        Node node0 = new Node(0);
+        node0.addNodeTag(NodeTag.CHARACTER);
+        Node nodeA = new Node(1);
+        nodeA.addNodeTag(NodeTag.PATH_START);
+        Node nodeB = new Node(2);
+        nodeB.addNodeTag(NodeTag.CHARACTER);
+        Node nodeC = new Node(3);
+        nodeC.addNodeTag(NodeTag.PATH_START);
+        Node nodeD = new Node(4);
+        nodeD.addNodeTag(NodeTag.PATH_END);
+        Node nodeE = new Node(5);
+        nodeE.addNodeTag(NodeTag.PATH_START);
+        Node nodeF = new Node(6);
+        nodeF.addNodeTag(NodeTag.CHARACTER);
+        Node nodeG = new Node(7);
+        nodeG.addNodeTag(NodeTag.PATH_END);
 
         node0.addRelatedNodes(NodeRelationship.PATH_TO, nodeA);
         nodeA.addRelatedNodes(NodeRelationship.PATH_TO, nodeB);
@@ -118,7 +125,7 @@ public class NodeSearchTest {
         List<Node> nodesOrdered = NodeSearch.getNodePath(node0, fullPath);
         assertEquals(8, nodesOrdered.size());
 
-        Set<Set<Node>> nodeBlocks = NodeSearch.getNodeBlocks(nodesOrdered, NodeType.PATH_START, NodeType.PATH_END);
+        Set<Set<Node>> nodeBlocks = NodeSearch.getNodeBlocks(nodesOrdered, NodeTag.PATH_START, NodeTag.PATH_END);
 
         assertEquals(2, nodeBlocks.size());
 

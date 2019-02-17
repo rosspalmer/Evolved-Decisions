@@ -8,14 +8,18 @@ import java.util.Set;
 public class Node {
 
     private final int nodeId;
-    private final NodeType nodeType;
+    private Set<NodeTag> nodeTags;
 
     private Map<NodeRelationship, Set<Node>> relatedNodesMap;
 
-    public Node(int nodeId, NodeType nodeType) {
+    public Node(int nodeId) {
         this.nodeId = nodeId;
-        this.nodeType = nodeType;
+        this.nodeTags = new HashSet<>();
         relatedNodesMap = new HashMap<>();
+    }
+
+    public void addNodeTag(NodeTag nodeTag) {
+        nodeTags.add(nodeTag);
     }
 
     public void addRelatedNodes(NodeRelationship relationship, Node node) {
@@ -30,8 +34,8 @@ public class Node {
         return nodeId;
     }
 
-    public NodeType getNodeType() {
-        return nodeType;
+    public Set<NodeTag> getNodeTags() {
+        return nodeTags;
     }
 
     public Set<Node> getRelatedNodes(NodeRelationship relationship) {
@@ -40,6 +44,14 @@ public class Node {
         } else {
             return new HashSet<>();
         }
+    }
+
+    public boolean hasNodeTag(NodeTag nodeTag) {
+        return nodeTags.contains(nodeTag);
+    }
+
+    public void setNodeTags(Set<NodeTag> nodeTags) {
+        this.nodeTags = nodeTags;
     }
 
     public void setRelatedNodes(NodeRelationship relationship, Set<Node> relatedNodes) {

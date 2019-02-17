@@ -12,8 +12,8 @@ public class NodeSearch {
         return nodes.stream().filter(node -> node.getNodeId() == nodeId).findAny().orElse(null);
     }
 
-    public static Set<Node> getNodes(Set<Node> nodes, NodeType nodeType) {
-        return nodes.stream().filter(node -> node.getNodeType() == nodeType).collect(Collectors.toSet());
+    public static Set<Node> getNodes(Set<Node> nodes, NodeTag nodeTag) {
+        return nodes.stream().filter(node -> node.hasNodeTag(nodeTag)).collect(Collectors.toSet());
     }
 
     public static List<Node> getNodePath(Node startNode, Set<Node> includedNodes) {
@@ -45,7 +45,7 @@ public class NodeSearch {
         return nodePath;
     }
 
-    public static Set<Set<Node>> getNodeBlocks(List<Node> orderedNodes, NodeType blockStartType, NodeType blockEndType) {
+    public static Set<Set<Node>> getNodeBlocks(List<Node> orderedNodes, NodeTag blockStartType, NodeTag blockEndType) {
 
         Set<Set<Node>> nodeBlocks = new HashSet<>();
         boolean startFound = false;
@@ -55,11 +55,11 @@ public class NodeSearch {
 
             Node node = orderedNodes.get(i);
 
-            if (!startFound && node.getNodeType().equals(blockStartType)) {
+            if (!startFound && node.hasNodeTag(blockStartType)) {
                 startIndex = i;
                 startFound = true;
 
-            } else if (startFound && node.getNodeType().equals(blockEndType)) {
+            } else if (startFound && node.hasNodeTag(blockEndType)) {
                 nodeBlocks.add(new HashSet<>(orderedNodes.subList(startIndex, i + 1)));
                 startFound = false;
             }
