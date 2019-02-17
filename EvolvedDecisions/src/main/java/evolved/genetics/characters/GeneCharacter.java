@@ -1,4 +1,6 @@
 package evolved.genetics.characters;
 
-public class GeneMap {
+public interface GeneCharacter {
+
+
 }

@@ -1,13 +1,10 @@
 package evolved.genetics.characters;
 
-import evolved.genetics.Gene;
-
-public abstract class OperatorCharactor extends CodeCharacter {
+public abstract class OperatorCharactor implements GeneCharacter {
 
     private final OperatorType operatorType;
 
-    public OperatorCharactor(OperatorType operatorType, Gene geneA, Gene geneB) {
-        super(geneA, geneB);
+    public OperatorCharactor(OperatorType operatorType) {
         this.operatorType = operatorType;
     }
 

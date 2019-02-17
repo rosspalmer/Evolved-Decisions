@@ -1,23 +1,25 @@
 package evolved.genetics;
 
+import evolved.genetics.characters.GeneCharacter;
+
 import java.util.Objects;
 
 public class Gene {
 
     private final int geneId;
-    private final GeneOption geneOption;
+    private final GeneCharacter geneCharacter;
 
-    public Gene(int geneId, GeneOption geneOption) {
+    public Gene(int geneId, GeneCharacter geneCharacter) {
         this.geneId = geneId;
-        this.geneOption = geneOption;
+        this.geneCharacter = geneCharacter;
     }
 
     public int getGeneId() {
         return geneId;
     }
 
-    public GeneOption getGeneOption() {
-        return geneOption;
+    public GeneCharacter getGeneCharacter() {
+        return geneCharacter;
     }
 
     @Override
@@ -26,11 +28,11 @@ public class Gene {
         if (o == null || getClass() != o.getClass()) return false;
         Gene gene = (Gene) o;
         return getGeneId() == gene.getGeneId() &&
-                getGeneOption() == gene.getGeneOption();
+                getGeneCharacter() == gene.getGeneCharacter();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getGeneId(), getGeneOption());
+        return Objects.hash(getGeneId(), getGeneCharacter());
     }
 }
