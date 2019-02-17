@@ -1,4 +1,4 @@
-package evolved.genetics.graph;
+package evolved.graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
