@@ -1,9 +1,8 @@
 package evolved.model.operators;
 
-import evolved.data.DataSet;
 import evolved.data.DataValue;
 import evolved.model.feed.DataValueFeed;
-import evolved.model.ModelBase;
+import evolved.model.Model;
 import evolved.model.ModelEngine;
 import evolved.model.ParameterTuner;
 import evolved.model.feed.ValueFeed;
@@ -11,11 +10,11 @@ import evolved.model.feed.ValueSetFeed;
 
 import java.util.Set;
 
-public abstract class OperatorModel extends ModelBase {
+public abstract class OperatorModelBuilder extends Model {
 
     private Operator operator;
 
-    public OperatorModel(ModelEngine modelEngine, ParameterTuner parameterTuner, Operator operator) {
+    public OperatorModelBuilder(ModelEngine modelEngine, ParameterTuner parameterTuner, Operator operator) {
         super(modelEngine, parameterTuner);
         this.operator = operator;
     }
