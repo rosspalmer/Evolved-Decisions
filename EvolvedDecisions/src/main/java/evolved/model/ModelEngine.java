@@ -1,6 +1,7 @@
 package evolved.model;
 
 import evolved.data.DataSet;
+import evolved.model.base.ModelBase;
 
 import java.util.ArrayList;
 import java.util.List;
