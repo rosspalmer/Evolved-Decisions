@@ -30,4 +30,11 @@ public class MapDataSet implements DataSet {
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toSet());
     }
+
+    @Override
+    public Map<String, DataValue> getValueMap(Set<String> inputKeys) {
+        return dataValueMap.entrySet().stream()
+                .filter(entry -> inputKeys.contains(entry.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
 }

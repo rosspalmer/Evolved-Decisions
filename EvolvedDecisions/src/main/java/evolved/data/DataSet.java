@@ -1,5 +1,6 @@
 package evolved.data;
 
+import java.util.Map;
 import java.util.Set;
 
 public interface DataSet {
@@ -9,5 +10,7 @@ public interface DataSet {
     void setValue(String key, DataValue dataValue);
 
     Set<DataValue> getValues(Set<String> inputKeys);
+
+    Map<String, DataValue> getValueMap(Set<String> inputKeys);
 
 }
