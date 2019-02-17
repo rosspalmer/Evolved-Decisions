@@ -1,5 +1,5 @@
 package evolved.genetics.graph;
 
 public enum NodeRelationship {
-    PATH_TO
+    PATH_TO, SPECIES_GENES
 }

@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 
 public class NodeSearch {
 
-    public static Set<Node> getNodesOfType(Set<Node> nodes, NodeType nodeType) {
+    public static Node getNode(Set<Node> nodes, int nodeId) {
+        return nodes.stream().filter(node -> node.getNodeId() == nodeId).findAny().orElse(null);
+    }
+
+    public static Set<Node> getNodes(Set<Node> nodes, NodeType nodeType) {
         return nodes.stream().filter(node -> node.getNodeType() == nodeType).collect(Collectors.toSet());
     }
 

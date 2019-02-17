@@ -24,21 +24,21 @@ public class NodeSearchTest {
         nodes.add(nodeC);
         nodes.add(nodeD);
 
-        Set<Node> characterNodes = NodeSearch.getNodesOfType(nodes, NodeType.CHARACTER);
+        Set<Node> characterNodes = NodeSearch.getNodes(nodes, NodeType.CHARACTER);
         assertEquals(2, characterNodes.size());
         assertTrue(characterNodes.contains(nodeA));
         assertFalse(characterNodes.contains(nodeB));
         assertFalse(characterNodes.contains(nodeC));
         assertTrue(characterNodes.contains(nodeD));
 
-        Set<Node> startNodes = NodeSearch.getNodesOfType(nodes, NodeType.PATH_START);
+        Set<Node> startNodes = NodeSearch.getNodes(nodes, NodeType.PATH_START);
         assertEquals(1, startNodes.size());
         assertFalse(startNodes.contains(nodeA));
         assertTrue(startNodes.contains(nodeB));
         assertFalse(startNodes.contains(nodeC));
         assertFalse(startNodes.contains(nodeD));
 
-        Set<Node> endNodes = NodeSearch.getNodesOfType(nodes, NodeType.PATH_END);
+        Set<Node> endNodes = NodeSearch.getNodes(nodes, NodeType.PATH_END);
         assertEquals(1, endNodes.size());
         assertFalse(endNodes.contains(nodeA));
         assertFalse(endNodes.contains(nodeB));
