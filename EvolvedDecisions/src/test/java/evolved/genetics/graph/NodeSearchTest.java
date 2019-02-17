@@ -11,6 +11,43 @@ import static org.junit.Assert.*;
 public class NodeSearchTest {
 
     @Test
+    public void getNodesOfType() {
+
+        Node nodeA = new Node(1, NodeType.CHARACTER);
+        Node nodeB = new Node(2, NodeType.PATH_START);
+        Node nodeC = new Node(3, NodeType.PATH_END);
+        Node nodeD = new Node(4, NodeType.CHARACTER);
+
+        Set<Node> nodes = new HashSet<>();
+        nodes.add(nodeA);
+        nodes.add(nodeB);
+        nodes.add(nodeC);
+        nodes.add(nodeD);
+
+        Set<Node> characterNodes = NodeSearch.getNodesOfType(nodes, NodeType.CHARACTER);
+        assertEquals(2, characterNodes.size());
+        assertTrue(characterNodes.contains(nodeA));
+        assertFalse(characterNodes.contains(nodeB));
+        assertFalse(characterNodes.contains(nodeC));
+        assertTrue(characterNodes.contains(nodeD));
+
+        Set<Node> startNodes = NodeSearch.getNodesOfType(nodes, NodeType.PATH_START);
+        assertEquals(1, startNodes.size());
+        assertFalse(startNodes.contains(nodeA));
+        assertTrue(startNodes.contains(nodeB));
+        assertFalse(startNodes.contains(nodeC));
+        assertFalse(startNodes.contains(nodeD));
+
+        Set<Node> endNodes = NodeSearch.getNodesOfType(nodes, NodeType.PATH_END);
+        assertEquals(1, endNodes.size());
+        assertFalse(endNodes.contains(nodeA));
+        assertFalse(endNodes.contains(nodeB));
+        assertTrue(endNodes.contains(nodeC));
+        assertFalse(endNodes.contains(nodeD));
+
+    }
+
+    @Test
     public void getCharacterPath() {
 
         Node node0 = new Node(0, null);
