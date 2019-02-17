@@ -1,11 +1,17 @@
 package evolved.model.operators;
 
 import evolved.data.DataSet;
-import evolved.model.base.ModelBase;
+import evolved.data.DataValue;
+import evolved.model.feed.DataValueFeed;
+import evolved.model.ModelBase;
 import evolved.model.ModelEngine;
 import evolved.model.ParameterTuner;
+import evolved.model.feed.ValueFeed;
+import evolved.model.feed.ValueSetFeed;
 
-public class OperatorModel extends ModelBase {
+import java.util.Set;
+
+public abstract class OperatorModel extends ModelBase {
 
     private Operator operator;
 
@@ -19,11 +25,18 @@ public class OperatorModel extends ModelBase {
     }
 
     @Override
-    public DataSet transformDataSet(DataSet dataSet) {
-        if (getOperator() instanceof SingleOperator) {
-
+    public DataValueFeed compute(DataValueFeed inputFeed) {
+        DataValue outputDataValue;
+        if (operator instanceof SingleOperator) {
+            DataValue inputDataValue = ((ValueFeed) inputFeed).getDataValue();
+            outputDataValue = ((SingleOperator) operator).transformDataValue(inputDataValue);
+        } else if (operator instanceof MultiOperator) {
+            Set<DataValue> inputDataValues = ((ValueSetFeed) inputFeed).getDataValues();
+            outputDataValue = ((MultiOperator) operator).transform(inputDataValues);
+        } else {
+            throw new RuntimeException("Unsupported Operator Type");
         }
-        return null;
+        return new ValueFeed(outputDataValue);
     }
 
 }
