@@ -6,15 +6,13 @@ import evolved.model.feed.DataValueFeed;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Model {
+public abstract class ModelComponent {
 
-    private ModelEngine modelEngine;
     private ParameterTuner parameterTuner;
     private ModelBuilder modelBuilder;
     private Set<Parameter> parameters;
 
-    public Model(ModelEngine modelEngine, ParameterTuner parameterTuner, ModelBuilder modelBuilder) {
-        this.modelEngine = modelEngine;
+    public ModelComponent(ParameterTuner parameterTuner, ModelBuilder modelBuilder) {
         this.parameterTuner = parameterTuner;
         this.modelBuilder = modelBuilder;
         parameters = new HashSet<>();
@@ -22,10 +20,6 @@ public abstract class Model {
 
     public void addParameter(Parameter parameter) {
         parameters.add(parameter);
-    }
-
-    public ModelEngine getModelEngine() {
-        return modelEngine;
     }
 
     public Parameter getParameter(String parameterName) {
@@ -49,15 +43,8 @@ public abstract class Model {
         this.parameterTuner = parameterTuner;
     }
 
-    public void setModelEngine(ModelEngine modelEngine) {
-        this.modelEngine = modelEngine;
-    }
-
-    void transformDataSet(ModelEngine modelEngine, DataSet dataSet) {
-
-        setModelEngine(modelEngine);
+    void updateDataSet(DataSet dataSet) {
         setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
-
         DataValueFeed inputFeed = modelBuilder.generateInputFeed(dataSet);
         DataValueFeed outputFeed = modelBuilder.compute(inputFeed);
         modelBuilder.updateDataSet(dataSet, outputFeed);
