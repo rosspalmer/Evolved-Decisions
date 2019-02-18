@@ -31,7 +31,7 @@ public class OperatorBuilderDecorator extends ModelBuilderDecorator {
             outputDataValue = ((SingleOperator) operator).transformDataValue(inputDataValue);
         } else if (operator instanceof MultiOperator) {
             Set<DataValue> inputDataValues = ((ValueSetFeed) inputFeed).getDataValues();
-            outputDataValue = ((MultiOperator) operator).transform(inputDataValues);
+            outputDataValue = ((MultiOperator) operator).transformDataValues(inputDataValues);
         } else {
             throw new RuntimeException("Unsupported Operator Type");
         }
