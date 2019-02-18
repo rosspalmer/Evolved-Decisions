@@ -1,6 +1,6 @@
 package evolved.model;
 
-import evolved.model.operators.Operator;
+import evolved.model.compute.Operator;
 
 import java.util.Set;
 

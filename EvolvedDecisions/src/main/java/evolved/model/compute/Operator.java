@@ -1,4 +1,4 @@
-package evolved.model.operators;
+package evolved.model.compute;
 
 import evolved.data.DataValue;
 import evolved.data.DataValueFactory;
@@ -9,7 +9,7 @@ import evolved.model.feed.ValueSetFeed;
 import java.util.Set;
 import java.util.function.Function;
 
-public enum OperatorType {
+public enum Operator {
 
     AND("and", dataFeed -> {
         Set<DataValue> dataValues = ((ValueSetFeed) dataFeed).getDataValues();
@@ -63,7 +63,7 @@ public enum OperatorType {
     private String stringValue;
     private Function<DataValueFeed, DataValueFeed> computeFunction;
 
-    OperatorType(String stringValue, Function<DataValueFeed, DataValueFeed> computeFunction) {
+    Operator(String stringValue, Function<DataValueFeed, DataValueFeed> computeFunction) {
         this.stringValue = stringValue;
         this.computeFunction = computeFunction;
     }

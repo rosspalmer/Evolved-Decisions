@@ -5,7 +5,7 @@ import evolved.model.feed.DataValueFeed;
 import evolved.model.feed.MultiInputSetDecorator;
 import evolved.model.feed.SingleInputDecorator;
 import evolved.model.feed.SingleOutputDecorator;
-import evolved.model.operators.OperatorBuilderDecorator;
+import evolved.model.compute.OperatorBuilderDecorator;
 
 import java.util.Set;
 

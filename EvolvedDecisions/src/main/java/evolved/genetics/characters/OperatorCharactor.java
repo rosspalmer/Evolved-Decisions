@@ -1,17 +1,17 @@
 package evolved.genetics.characters;
 
-import evolved.model.operators.OperatorType;
+import evolved.model.compute.Operator;
 
 public abstract class OperatorCharactor implements GeneCharacter {
 
-    private final OperatorType operatorType;
+    private final Operator operator;
 
-    public OperatorCharactor(OperatorType operatorType) {
-        this.operatorType = operatorType;
+    public OperatorCharactor(Operator operator) {
+        this.operator = operator;
     }
 
-    public OperatorType getOperatorType() {
-        return operatorType;
+    public Operator getOperator() {
+        return operator;
     }
 
 }
