@@ -21,9 +21,8 @@ public class ModelEngine {
         return models;
     }
 
-    public DataSet transformDataSet(DataSet dataSet) {
+    public void transformDataSet(DataSet dataSet) {
         models.forEach(model -> model.transformDataSet(this, dataSet));
-        return dataSet;
     }
 
 }

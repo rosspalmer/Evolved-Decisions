@@ -53,15 +53,13 @@ public abstract class Model {
         this.modelEngine = modelEngine;
     }
 
-    public DataSet transformDataSet(ModelEngine modelEngine, DataSet dataSet) {
+    void transformDataSet(ModelEngine modelEngine, DataSet dataSet) {
 
         setModelEngine(modelEngine);
         setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
 
         DataValueFeed inputFeed = modelBuilder.generateInputFeed(dataSet);
         DataValueFeed outputFeed = modelBuilder.compute(inputFeed);
-        dataSet = modelBuilder.updateDataSet(dataSet, outputFeed);
-
-        return dataSet;
+        modelBuilder.updateDataSet(dataSet, outputFeed);
     }
 }

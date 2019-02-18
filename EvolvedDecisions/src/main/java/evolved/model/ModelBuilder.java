@@ -9,6 +9,6 @@ public interface ModelBuilder {
 
     DataValueFeed compute(DataValueFeed inputFeed);
 
-    DataSet updateDataSet(DataSet dataSet, DataValueFeed outputFeed);
+    void updateDataSet(DataSet dataSet, DataValueFeed outputFeed);
 
 }
