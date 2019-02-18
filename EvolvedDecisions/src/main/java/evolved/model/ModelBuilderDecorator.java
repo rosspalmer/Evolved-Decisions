@@ -22,8 +22,8 @@ public class ModelBuilderDecorator implements ModelBuilder {
     }
 
     @Override
-    public DataSet updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
-        return null;
+    public void updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
+        modelBuilder.updateDataSet(dataSet, outputFeed);
     }
 
 }

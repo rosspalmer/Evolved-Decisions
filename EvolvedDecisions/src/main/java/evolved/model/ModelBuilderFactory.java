@@ -55,8 +55,7 @@ public class ModelBuilderFactory {
             }
 
             @Override
-            public DataSet updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
-                return null;
+            public void updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
             }
         };
     }
