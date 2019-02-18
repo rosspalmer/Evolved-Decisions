@@ -5,7 +5,7 @@ import evolved.data.DataValue;
 import evolved.data.DataValueFactory;
 import evolved.data.MapDataSet;
 import evolved.model.ComponentBuilder;
-import evolved.model.ModelBuilderFactory;
+import evolved.model.ComponentBuilderFactory;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class FeedDecoratorTest {
 
         DataSet dataSet = getTestDataSet();
 
-        ComponentBuilder componentBuilder = ModelBuilderFactory.concreteBase();
+        ComponentBuilder componentBuilder = ComponentBuilderFactory.concreteBase();
         componentBuilder = new SingleInputDecorator(componentBuilder, "inputA");
 
         DataValueFeed inputFeed = componentBuilder.generateInputFeed(dataSet);
@@ -39,7 +39,7 @@ public class FeedDecoratorTest {
         assertTrue(inputFeed instanceof ValueFeed);
         assertEquals(1.03, ((ValueFeed) inputFeed).getDataValue().getDoubleValue(), 0.0001);
 
-        componentBuilder = ModelBuilderFactory.concreteBase();
+        componentBuilder = ComponentBuilderFactory.concreteBase();
         componentBuilder = new SingleInputDecorator(componentBuilder, "inputB");
 
         inputFeed = componentBuilder.generateInputFeed(dataSet);
@@ -54,7 +54,7 @@ public class FeedDecoratorTest {
 
         DataSet dataSet = getTestDataSet();
 
-        ComponentBuilder componentBuilder = ModelBuilderFactory.concreteBase();
+        ComponentBuilder componentBuilder = ComponentBuilderFactory.concreteBase();
         Set<String> inputKeys = new HashSet<>();
         inputKeys.add("inputA");
         componentBuilder = new MultiInputSetDecorator(componentBuilder, inputKeys);
@@ -66,7 +66,7 @@ public class FeedDecoratorTest {
         assertEquals(1.03, valueSetFeed.getDataValues().stream()
                 .mapToDouble(DataValue::getDoubleValue).sum(), 0.0001);
 
-        componentBuilder = ModelBuilderFactory.concreteBase();
+        componentBuilder = ComponentBuilderFactory.concreteBase();
         inputKeys = new HashSet<>();
         inputKeys.add("inputA");
         inputKeys.add("outputA");
@@ -86,7 +86,7 @@ public class FeedDecoratorTest {
 
         DataSet dataSet = getTestDataSet();
 
-        ComponentBuilder componentBuilder = ModelBuilderFactory.concreteBase();
+        ComponentBuilder componentBuilder = ComponentBuilderFactory.concreteBase();
         componentBuilder = new SingleOutputDecorator(componentBuilder, "outputA");
 
         assertEquals(4.2, dataSet.getValue("outputA").getDoubleValue(), 0.0001);
@@ -98,7 +98,7 @@ public class FeedDecoratorTest {
         assertEquals(2.27, dataSet.getValue("outputA").getDoubleValue(), 0.0001);
         assertFalse(dataSet.getValue("outputB").getBooleanValue());
 
-        componentBuilder = ModelBuilderFactory.concreteBase();
+        componentBuilder = ComponentBuilderFactory.concreteBase();
         componentBuilder = new SingleOutputDecorator(componentBuilder, "outputB");
 
         outputValue = new ValueFeed(DataValueFactory.generateBooleanDataValue(true));

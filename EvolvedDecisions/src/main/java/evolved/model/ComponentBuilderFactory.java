@@ -9,7 +9,7 @@ import evolved.model.compute.OperatorBuilderDecorator;
 
 import java.util.Set;
 
-public class ModelBuilderFactory {
+public class ComponentBuilderFactory {
 
     public static ComponentBuilder concreteBase() {
         return new ComponentBuilder() {
@@ -29,7 +29,7 @@ public class ModelBuilderFactory {
         };
     }
 
-    public static ComponentBuilder generate(ModelBuilderConfiguration configuration) {
+    public static ComponentBuilder generate(ComponentBuilderConfiguration configuration) {
 
         ComponentBuilder newBuilder = concreteBase();
 
@@ -40,7 +40,7 @@ public class ModelBuilderFactory {
         return newBuilder;
     }
 
-    private static ComponentBuilder configureInput(ComponentBuilder componentBuilder, ModelBuilderConfiguration configuration) {
+    private static ComponentBuilder configureInput(ComponentBuilder componentBuilder, ComponentBuilderConfiguration configuration) {
 
         Set<String> inputKeys = configuration.getInputKeys();
         if (inputKeys.size() == 1) {
@@ -52,14 +52,14 @@ public class ModelBuilderFactory {
 
     }
 
-    private static ComponentBuilder configureOutput(ComponentBuilder componentBuilder, ModelBuilderConfiguration configuration) {
+    private static ComponentBuilder configureOutput(ComponentBuilder componentBuilder, ComponentBuilderConfiguration configuration) {
         if (configuration.getOutputKey() != null) {
             componentBuilder = new SingleOutputDecorator(componentBuilder, configuration.getOutputKey());
         }
         return componentBuilder;
     }
 
-    private static ComponentBuilder configureCompute(ComponentBuilder componentBuilder, ModelBuilderConfiguration configuration) {
+    private static ComponentBuilder configureCompute(ComponentBuilder componentBuilder, ComponentBuilderConfiguration configuration) {
         if (configuration.getOperator() != null) {
             componentBuilder = new OperatorBuilderDecorator(componentBuilder, configuration.getOperator());
         }
