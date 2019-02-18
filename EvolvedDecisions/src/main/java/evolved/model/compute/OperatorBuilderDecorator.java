@@ -1,16 +1,16 @@
 package evolved.model.compute;
 
-import evolved.model.ModelBuilder;
-import evolved.model.ModelBuilderDecorator;
+import evolved.model.ComponentBuilder;
+import evolved.model.ComponentBuilderDecorator;
 import evolved.model.feed.DataValueFeed;
 
 
-public class OperatorBuilderDecorator extends ModelBuilderDecorator {
+public class OperatorBuilderDecorator extends ComponentBuilderDecorator {
 
     private Operator operator;
 
-    public OperatorBuilderDecorator(ModelBuilder modelBuilder, Operator operator) {
-        super(modelBuilder);
+    public OperatorBuilderDecorator(ComponentBuilder componentBuilder, Operator operator) {
+        super(componentBuilder);
         this.operator = operator;
     }
 

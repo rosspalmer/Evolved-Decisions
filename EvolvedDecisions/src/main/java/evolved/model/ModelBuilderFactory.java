@@ -11,8 +11,8 @@ import java.util.Set;
 
 public class ModelBuilderFactory {
 
-    public static ModelBuilder concreteBase() {
-        return new ModelBuilder() {
+    public static ComponentBuilder concreteBase() {
+        return new ComponentBuilder() {
             @Override
             public DataValueFeed generateInputFeed(DataSet dataSet) {
                 return null;
@@ -29,9 +29,9 @@ public class ModelBuilderFactory {
         };
     }
 
-    public static ModelBuilder generate(ModelBuilderConfiguration configuration) {
+    public static ComponentBuilder generate(ModelBuilderConfiguration configuration) {
 
-        ModelBuilder newBuilder = concreteBase();
+        ComponentBuilder newBuilder = concreteBase();
 
         newBuilder = configureInput(newBuilder, configuration);
         newBuilder = configureOutput(newBuilder, configuration);
@@ -40,30 +40,30 @@ public class ModelBuilderFactory {
         return newBuilder;
     }
 
-    private static ModelBuilder configureInput(ModelBuilder modelBuilder, ModelBuilderConfiguration configuration) {
+    private static ComponentBuilder configureInput(ComponentBuilder componentBuilder, ModelBuilderConfiguration configuration) {
 
         Set<String> inputKeys = configuration.getInputKeys();
         if (inputKeys.size() == 1) {
-            modelBuilder = new SingleInputDecorator(modelBuilder, inputKeys.stream().findAny().get());
+            componentBuilder = new SingleInputDecorator(componentBuilder, inputKeys.stream().findAny().get());
         } else if (inputKeys.size() > 1) {
-            modelBuilder = new MultiInputSetDecorator(modelBuilder, inputKeys);
+            componentBuilder = new MultiInputSetDecorator(componentBuilder, inputKeys);
         }
-        return modelBuilder;
+        return componentBuilder;
 
     }
 
-    private static ModelBuilder configureOutput(ModelBuilder modelBuilder, ModelBuilderConfiguration configuration) {
+    private static ComponentBuilder configureOutput(ComponentBuilder componentBuilder, ModelBuilderConfiguration configuration) {
         if (configuration.getOutputKey() != null) {
-            modelBuilder = new SingleOutputDecorator(modelBuilder, configuration.getOutputKey());
+            componentBuilder = new SingleOutputDecorator(componentBuilder, configuration.getOutputKey());
         }
-        return modelBuilder;
+        return componentBuilder;
     }
 
-    private static ModelBuilder configureCompute(ModelBuilder modelBuilder, ModelBuilderConfiguration configuration) {
+    private static ComponentBuilder configureCompute(ComponentBuilder componentBuilder, ModelBuilderConfiguration configuration) {
         if (configuration.getOperator() != null) {
-            modelBuilder = new OperatorBuilderDecorator(modelBuilder, configuration.getOperator());
+            componentBuilder = new OperatorBuilderDecorator(componentBuilder, configuration.getOperator());
         }
-        return modelBuilder;
+        return componentBuilder;
     }
 
 }

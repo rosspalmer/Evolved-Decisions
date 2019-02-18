@@ -2,15 +2,15 @@ package evolved.model.feed;
 
 import evolved.data.DataSet;
 import evolved.data.DataValue;
-import evolved.model.ModelBuilder;
-import evolved.model.ModelBuilderDecorator;
+import evolved.model.ComponentBuilder;
+import evolved.model.ComponentBuilderDecorator;
 
-public class SingleInputDecorator extends ModelBuilderDecorator {
+public class SingleInputDecorator extends ComponentBuilderDecorator {
 
     private String inputKey;
 
-    public SingleInputDecorator(ModelBuilder modelBuilder, String inputKey) {
-        super(modelBuilder);
+    public SingleInputDecorator(ComponentBuilder componentBuilder, String inputKey) {
+        super(componentBuilder);
         this.inputKey = inputKey;
     }
 

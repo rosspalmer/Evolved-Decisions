@@ -9,12 +9,12 @@ import java.util.Set;
 public abstract class ModelComponent {
 
     private ParameterTuner parameterTuner;
-    private ModelBuilder modelBuilder;
+    private ComponentBuilder componentBuilder;
     private Set<Parameter> parameters;
 
-    public ModelComponent(ParameterTuner parameterTuner, ModelBuilder modelBuilder) {
+    public ModelComponent(ParameterTuner parameterTuner, ComponentBuilder componentBuilder) {
         this.parameterTuner = parameterTuner;
-        this.modelBuilder = modelBuilder;
+        this.componentBuilder = componentBuilder;
         parameters = new HashSet<>();
     }
 
@@ -45,8 +45,8 @@ public abstract class ModelComponent {
 
     void updateDataSet(DataSet dataSet) {
         setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
-        DataValueFeed inputFeed = modelBuilder.generateInputFeed(dataSet);
-        DataValueFeed outputFeed = modelBuilder.compute(inputFeed);
-        modelBuilder.updateDataSet(dataSet, outputFeed);
+        DataValueFeed inputFeed = componentBuilder.generateInputFeed(dataSet);
+        DataValueFeed outputFeed = componentBuilder.compute(inputFeed);
+        componentBuilder.updateDataSet(dataSet, outputFeed);
     }
 }

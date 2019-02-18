@@ -1,15 +1,15 @@
 package evolved.model.feed;
 
 import evolved.data.DataSet;
-import evolved.model.ModelBuilder;
-import evolved.model.ModelBuilderDecorator;
+import evolved.model.ComponentBuilder;
+import evolved.model.ComponentBuilderDecorator;
 
-public class SingleOutputDecorator extends ModelBuilderDecorator {
+public class SingleOutputDecorator extends ComponentBuilderDecorator {
 
     private String outputKey;
 
-    public SingleOutputDecorator(ModelBuilder modelBuilder, String outputKey) {
-        super(modelBuilder);
+    public SingleOutputDecorator(ComponentBuilder componentBuilder, String outputKey) {
+        super(componentBuilder);
         this.outputKey = outputKey;
     }
 
