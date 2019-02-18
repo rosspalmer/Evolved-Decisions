@@ -2,29 +2,27 @@ package evolved.model;
 
 import evolved.data.DataSet;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ModelEngine {
 
-    private List<Model> modelSequence;
+    private Set<Model> models;
 
     public ModelEngine() {
-        modelSequence = new ArrayList<>();
+        models = new HashSet<>();
     }
 
     public void addToModelSequence(Model model) {
-        modelSequence.add(model);
+        models.add(model);
     }
 
-    public List<Model> getModelSequence() {
-        return modelSequence;
+    public Set<Model> getModels() {
+        return models;
     }
 
     public DataSet transformDataSet(DataSet dataSet) {
-        for (Model model : modelSequence) {
-            dataSet = model.transformDataSet(this, dataSet);
-        }
+        models.forEach(model -> model.transformDataSet(this, dataSet));
         return dataSet;
     }
 
