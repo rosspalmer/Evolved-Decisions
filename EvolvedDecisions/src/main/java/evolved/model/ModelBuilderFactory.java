@@ -15,9 +15,11 @@ public class ModelBuilderFactory {
 
         ModelBuilder newBuilder = concreteBase(configuration);
 
-        newBuilder = configureInput(newBuilder, configuration);
-        newBuilder = configureOutput(newBuilder, configuration);
-        newBuilder = configureCompute(newBuilder, configuration);
+        if (configuration != null) {
+            newBuilder = configureInput(newBuilder, configuration);
+            newBuilder = configureOutput(newBuilder, configuration);
+            newBuilder = configureCompute(newBuilder, configuration);
+        }
 
         return newBuilder;
     }
@@ -35,11 +37,17 @@ public class ModelBuilderFactory {
     }
 
     private static ModelBuilder configureOutput(ModelBuilder modelBuilder, ModelBuilderConfiguration configuration) {
-        return new SingleOutputDecorator(modelBuilder, configuration.getOutputKey());
+        if (configuration.getOutputKey() != null) {
+            modelBuilder = new SingleOutputDecorator(modelBuilder, configuration.getOutputKey());
+        }
+        return modelBuilder;
     }
 
     private static ModelBuilder configureCompute(ModelBuilder modelBuilder, ModelBuilderConfiguration configuration) {
-        return new OperatorBuilderDecorator(modelBuilder, configuration.getOperator());
+        if (configuration.getOperator() != null) {
+            modelBuilder = new OperatorBuilderDecorator(modelBuilder, configuration.getOperator());
+        }
+        return modelBuilder;
     }
 
     private static ModelBuilder concreteBase(ModelBuilderConfiguration configuration) {

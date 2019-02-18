@@ -14,8 +14,7 @@ public class SingleOutputDecorator extends ModelBuilderDecorator {
     }
 
     @Override
-    public DataSet updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
+    public void updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
         dataSet.setValue(outputKey, ((ValueFeed) outputFeed).getDataValue());
-        return dataSet;
     }
 }
