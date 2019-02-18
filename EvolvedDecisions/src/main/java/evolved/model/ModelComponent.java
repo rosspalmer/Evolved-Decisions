@@ -6,14 +6,12 @@ import evolved.model.feed.DataValueFeed;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class ModelComponent {
+public class ModelComponent {
 
-    private ParameterTuner parameterTuner;
     private ComponentBuilder componentBuilder;
     private Set<Parameter> parameters;
 
-    public ModelComponent(ParameterTuner parameterTuner, ComponentBuilder componentBuilder) {
-        this.parameterTuner = parameterTuner;
+    public ModelComponent(ComponentBuilder componentBuilder) {
         this.componentBuilder = componentBuilder;
         parameters = new HashSet<>();
     }
@@ -31,20 +29,11 @@ public abstract class ModelComponent {
         return parameters;
     }
 
-    public ParameterTuner getParameterTuner() {
-        return parameterTuner;
-    }
-
     public void setParameters(Set<Parameter> parameters) {
         this.parameters = parameters;
     }
 
-    public void setParameterTuner(ParameterTuner parameterTuner) {
-        this.parameterTuner = parameterTuner;
-    }
-
     void updateDataSet(DataSet dataSet) {
-        setParameters(getParameterTuner().updateParameters(dataSet, getParameters()));
         DataValueFeed inputFeed = componentBuilder.generateInputFeed(dataSet);
         DataValueFeed outputFeed = componentBuilder.compute(inputFeed);
         componentBuilder.updateDataSet(dataSet, outputFeed);
