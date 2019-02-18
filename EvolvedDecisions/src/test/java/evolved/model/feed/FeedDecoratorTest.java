@@ -31,7 +31,7 @@ public class FeedDecoratorTest {
 
         DataSet dataSet = getTestDataSet();
 
-        ModelBuilder modelBuilder = ModelBuilderFactory.generate(null);
+        ModelBuilder modelBuilder = ModelBuilderFactory.concreteBase();
         modelBuilder = new SingleInputDecorator(modelBuilder, "inputA");
 
         DataValueFeed inputFeed = modelBuilder.generateInputFeed(dataSet);
@@ -39,7 +39,7 @@ public class FeedDecoratorTest {
         assertTrue(inputFeed instanceof ValueFeed);
         assertEquals(1.03, ((ValueFeed) inputFeed).getDataValue().getDoubleValue(), 0.0001);
 
-        modelBuilder = ModelBuilderFactory.generate(null);
+        modelBuilder = ModelBuilderFactory.concreteBase();
         modelBuilder = new SingleInputDecorator(modelBuilder, "inputB");
 
         inputFeed = modelBuilder.generateInputFeed(dataSet);
@@ -54,7 +54,7 @@ public class FeedDecoratorTest {
 
         DataSet dataSet = getTestDataSet();
 
-        ModelBuilder modelBuilder = ModelBuilderFactory.generate(null);
+        ModelBuilder modelBuilder = ModelBuilderFactory.concreteBase();
         Set<String> inputKeys = new HashSet<>();
         inputKeys.add("inputA");
         modelBuilder = new MultiInputSetDecorator(modelBuilder, inputKeys);
@@ -66,7 +66,7 @@ public class FeedDecoratorTest {
         assertEquals(1.03, valueSetFeed.getDataValues().stream()
                 .mapToDouble(DataValue::getDoubleValue).sum(), 0.0001);
 
-        modelBuilder = ModelBuilderFactory.generate(null);
+        modelBuilder = ModelBuilderFactory.concreteBase();
         inputKeys = new HashSet<>();
         inputKeys.add("inputA");
         inputKeys.add("outputA");
@@ -86,7 +86,7 @@ public class FeedDecoratorTest {
 
         DataSet dataSet = getTestDataSet();
 
-        ModelBuilder modelBuilder = ModelBuilderFactory.generate(null);
+        ModelBuilder modelBuilder = ModelBuilderFactory.concreteBase();
         modelBuilder = new SingleOutputDecorator(modelBuilder, "outputA");
 
         assertEquals(4.2, dataSet.getValue("outputA").getDoubleValue(), 0.0001);
@@ -98,7 +98,7 @@ public class FeedDecoratorTest {
         assertEquals(2.27, dataSet.getValue("outputA").getDoubleValue(), 0.0001);
         assertFalse(dataSet.getValue("outputB").getBooleanValue());
 
-        modelBuilder = ModelBuilderFactory.generate(null);
+        modelBuilder = ModelBuilderFactory.concreteBase();
         modelBuilder = new SingleOutputDecorator(modelBuilder, "outputB");
 
         outputValue = new ValueFeed(DataValueFactory.generateBooleanDataValue(true));

@@ -11,15 +11,31 @@ import java.util.Set;
 
 public class ModelBuilderFactory {
 
+    public static ModelBuilder concreteBase() {
+        return new ModelBuilder() {
+            @Override
+            public DataValueFeed generateInputFeed(DataSet dataSet) {
+                return null;
+            }
+
+            @Override
+            public DataValueFeed compute(DataValueFeed inputFeed) {
+                return null;
+            }
+
+            @Override
+            public void updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
+            }
+        };
+    }
+
     public static ModelBuilder generate(ModelBuilderConfiguration configuration) {
 
-        ModelBuilder newBuilder = concreteBase(configuration);
+        ModelBuilder newBuilder = concreteBase();
 
-        if (configuration != null) {
-            newBuilder = configureInput(newBuilder, configuration);
-            newBuilder = configureOutput(newBuilder, configuration);
-            newBuilder = configureCompute(newBuilder, configuration);
-        }
+        newBuilder = configureInput(newBuilder, configuration);
+        newBuilder = configureOutput(newBuilder, configuration);
+        newBuilder = configureCompute(newBuilder, configuration);
 
         return newBuilder;
     }
@@ -48,24 +64,6 @@ public class ModelBuilderFactory {
             modelBuilder = new OperatorBuilderDecorator(modelBuilder, configuration.getOperator());
         }
         return modelBuilder;
-    }
-
-    private static ModelBuilder concreteBase(ModelBuilderConfiguration configuration) {
-        return new ModelBuilder() {
-            @Override
-            public DataValueFeed generateInputFeed(DataSet dataSet) {
-                return null;
-            }
-
-            @Override
-            public DataValueFeed compute(DataValueFeed inputFeed) {
-                return null;
-            }
-
-            @Override
-            public void updateDataSet(DataSet dataSet, DataValueFeed outputFeed) {
-            }
-        };
     }
 
 }
