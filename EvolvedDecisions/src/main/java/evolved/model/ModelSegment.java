@@ -4,6 +4,8 @@ import evolved.data.DataSet;
 
 public interface ModelSegment {
 
-    public DataSet transformDataSet(DataSet dataSet);
+    void addModelComponent(ModelComponent modelComponent);
+
+    DataSet transformDataSet(DataSet dataSet);
 
 }

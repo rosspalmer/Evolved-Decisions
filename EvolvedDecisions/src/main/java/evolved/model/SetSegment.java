@@ -13,7 +13,7 @@ public class SetSegment implements ModelSegment {
         modelComponents = new HashSet<>();
     }
 
-    public void addToModelSequence(ModelComponent modelComponent) {
+    public void addModelComponent(ModelComponent modelComponent) {
         modelComponents.add(modelComponent);
     }
 
