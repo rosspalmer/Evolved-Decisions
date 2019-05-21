@@ -1,21 +1,21 @@
 package evolved.genetics;
 
 import evolved.genetics.characters.GeneCharacter;
+import evolved.graph.Node;
 
 import java.util.Objects;
 
-public class Gene {
+public class GeneNode extends Node {
 
-    private final int geneId;
     private final GeneCharacter geneCharacter;
 
-    public Gene(int geneId, GeneCharacter geneCharacter) {
-        this.geneId = geneId;
+    public GeneNode(int geneId, GeneCharacter geneCharacter) {
+        super(geneId);
         this.geneCharacter = geneCharacter;
     }
 
     public int getGeneId() {
-        return geneId;
+        return getNodeId();
     }
 
     public GeneCharacter getGeneCharacter() {
@@ -26,9 +26,9 @@ public class Gene {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Gene gene = (Gene) o;
-        return getGeneId() == gene.getGeneId() &&
-                getGeneCharacter() == gene.getGeneCharacter();
+        GeneNode geneNode = (GeneNode) o;
+        return getGeneId() == geneNode.getGeneId() &&
+                getGeneCharacter() == geneNode.getGeneCharacter();
     }
 
     @Override
